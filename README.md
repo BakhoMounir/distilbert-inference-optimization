@@ -1,8 +1,6 @@
 # DistilBERT IMDb Serving-Optimization Study
 
-**Course:** DSAA 4012 — Machine Learning Systems, HKUST(GZ)
-**Archetype:** 2.2 — Serving-optimization study
-**Team:** Bakhom Ramzy, Fatma Haddad
+
 
 ## 1. Systems question
 
@@ -26,7 +24,7 @@ batch 16 for INT8.
 ## 2. Hardware & environment
 
 This project targets a single-GPU / single-node budget as required by
-the course (§1 of the handout), split across two machines:
+the  (§1 of the handout), split across two machines:
 
 | Role                                                    | Resource                                                |
 | ------------------------------------------------------- | ------------------------------------------------------- |
@@ -49,7 +47,7 @@ were run locally on the GTX 1650 workstation.
 > The only SLURM script actually used for the submitted CPU results is
 > `scripts/benchmark_cpu.slurm`.
 
-Reliability practices followed throughout (per the course's measuring
+Reliability practices followed throughout (per the 's measuring
 guidance) include excluding warm-up iterations from timing, reporting
 median and p95 latency rather than relying on a single reading,
 using `torch.cuda.Event` and `torch.cuda.synchronize()` for GPU timing
@@ -123,7 +121,7 @@ python -c "from datasets import load_dataset; ds = load_dataset('stanfordnlp/imd
 ```
 
 Do **not** commit `imdb_dataset/` to the repository — it is a public
-dataset, so per the course's artifact rule it is referenced by this
+dataset, so per the 's artifact rule it is referenced by this
 script rather than uploaded.
 
 ### 6.3 Train the baseline (GTX 1650)
@@ -189,7 +187,7 @@ python -m src.analysis.final_summary        # -> results/final_summary.json
 python -m src.analysis.plot_results         # -> results/*.png
 ```
 
-## 7. What's real vs. stubbed (honesty per course requirement)
+## 7. What's real vs. stubbed (honesty per requirement)
 
 ### Real, run end-to-end, and reproducible from this repo
 
@@ -229,7 +227,7 @@ python -m src.analysis.plot_results         # -> results/*.png
 * ONNX Runtime export/runtime-choice comparison — listed as a possible
   third knob in the handout and in `requirements.txt`, but only two
   knobs (batch size × precision) were carried through to a full
-  measured comparison, following the course's "depth beats breadth"
+  measured comparison, following the 's "depth beats breadth"
   guidance.
 * The three legacy A40-targeting SLURM scripts described in §2 —
   scaffolding from an earlier plan, not used for the submitted
@@ -360,20 +358,11 @@ Both members contributed to the design, implementation, evaluation,
 and write-up. Contribution was not perfectly even; by mutual
 agreement, **Bakhom Ramzy** carried a larger share of the work overall.
 
-| Area                                                                   | Bakhom Ramzy | Fatma Haddad |
-| ---------------------------------------------------------------------- | ------------ | ------------ |
-| System design & systems question                                       | Lead         | Contributed  |
-| Implementation (data/model/train/benchmark/quantization/analysis code) | Lead         | Contributed  |
-| Evaluation & interpretation (roofline reasoning, plots)                | Lead         | Contributed  |
-| Report writing                                                         | Contributed  | Contributed  |
-| Presentation                                                           | Contributed  | Contributed  |
 
-*Agreed and signed by both members: Bakhom Ramzy, Fatma Haddad.*
 
 ## 11. AI-use acknowledgment
 
 Generative AI (Claude) was used during this project, consistent with
-the course AI policy: for **debugging specific, localized errors**
 (e.g., stack traces from tokenization/dataloader/quantization calls)
 and for **writing repetitive, boilerplate code** (e.g., CSV/JSON
 serialization in the benchmark harness, matplotlib plotting
